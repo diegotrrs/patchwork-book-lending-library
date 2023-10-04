@@ -1,5 +1,5 @@
 # Description
-This repository includes the coding challenge for Patchwork. 
+This repository includes the coding challenge for Patchwork. Check out the [Project Description](./ProblemDescription.MD) for details on the requirements.
 
 # How to run
 
@@ -15,6 +15,16 @@ npm run build && npm run start
 Using nodemon (dev mode)
 ```
 npm run dev
+```
+
+Apply Prisma migrations
+```
+npx prisma migrate deploy
+```
+
+Insert seed data
+```
+npm run seed
 ```
 
 # How to test

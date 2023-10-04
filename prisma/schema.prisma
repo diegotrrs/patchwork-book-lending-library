@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./database.db"
+}
+
+model Book {
+  id         Int       @id @default(autoincrement())
+  title      String
+  author     String
+  ISBN       String    @unique
+  isBorrowed Boolean   @default(false)
+  isReference Boolean  @default(false)
+  borrowedBy User?     @relation(fields: [userId], references: [id])
+  userId     Int?
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  username   String   @unique
+  borrowedBooks Book[]  // This will create a one-to-many relation with books.
+}
