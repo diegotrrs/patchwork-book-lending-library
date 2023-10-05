@@ -5,8 +5,9 @@ const prisma = new PrismaClient()
 export const getAllBooks = async () => await prisma.book.findMany()
 
 export const getAllBorrowableBooks = () => prisma.book.findMany({
-  where: {      
+  where: {
     isReference: false,
+    isBorrowed: false,
   },
 })
 
@@ -14,13 +15,18 @@ export const getAllBorrowedBooks = () => prisma.book.findMany({
   where: {      
     isBorrowed: true,
   },
+  include: {
+    borrowedBy: true
+  }
 })
 
 export const getAllUsers = () => prisma.user.findMany()
 
 export const findAvailableBooksByAuthor = (author: string) => prisma.book.findMany({
   where: {
-    author,
+    author: {
+      contains: author,
+    },
     isBorrowed: false,
   },
 })

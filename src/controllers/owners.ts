@@ -8,9 +8,9 @@ export enum OWNER_ACTIONS {
 export const handleWorkflow = async () => {
   const action = await promptAction()
 
-  switch (action){
-    case OWNER_ACTIONS.DISPLAY_BORROWED_BOOKS:      
+  switch (action) {
+    case OWNER_ACTIONS.DISPLAY_BORROWED_BOOKS:
       displayBorrowedBooks(await getAllBorrowedBooks())
-      break   
+      break
   }  
 }

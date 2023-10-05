@@ -75,7 +75,7 @@ const createRandomBooks = async () => {
 
 const createUsers = async () => {
   const users = Array.from({ length: 3 }).map((_, i) => ({
-    username: `user${i}`,
+    username: `user${i+1}`,
   }))
 
   for (const user of users) {
