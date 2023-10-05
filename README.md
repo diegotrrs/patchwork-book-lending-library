@@ -6,28 +6,12 @@ This repository includes the coding challenge for Patchwork. Check out the [Proj
 Run the following commands from the root folder
 ```
 npm run install
-```
 
-```
-npm run build && npm run start
-```
-
-Using nodemon (dev mode)
-```
-npm run dev
-```
-
-Apply Prisma migrations
-```
 npx prisma migrate deploy
-```
 
-Insert seed data
-```
 npm run seed
-```
 
-# How to test
-```
-npm run test
+npm run build
+
+npm run start
 ```

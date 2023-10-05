@@ -1,18 +1,17 @@
-import { PrismaClient } from '@prisma/client'
+import { handleWorkflow as handleOwnersWorkflow } from './controllers/owners'
+import { handleWorkflow as handleUsersWorkflow } from './controllers/users'
+import { ROLE_OPTIONS, promptRole } from './interactive'
 
-const prisma = new PrismaClient()
-
-async function main() {
-  const allUsers = await prisma.user.findMany()
-  console.log(allUsers)
+const main = async () => {
+  const role = await promptRole()
+  switch (role){
+    case ROLE_OPTIONS.OWNER:
+      handleOwnersWorkflow()
+      break
+    case ROLE_OPTIONS.USER:
+      handleUsersWorkflow()
+      break
+  } 
 }
 
 main()
-  .then(async () => {
-    await prisma.$disconnect()
-  })
-  .catch(async (e) => {
-    console.error(e)
-    await prisma.$disconnect()
-    process.exit(1)
-  })

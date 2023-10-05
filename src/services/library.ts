@@ -4,36 +4,42 @@ const prisma = new PrismaClient()
 
 export const getAllBooks = async () => await prisma.book.findMany()
 
-export const getAllUsers = async () => await prisma.user.findMany()
+export const getAllBorrowableBooks = () => prisma.book.findMany({
+  where: {      
+    isReference: false,
+  },
+})
 
-export const findAvailableBooksByAuthor = async (author: string) => {
-  return await prisma.book.findMany({
-    where: {
-      author: author,
-      isBorrowed: false,
+export const getAllBorrowedBooks = () => prisma.book.findMany({
+  where: {      
+    isBorrowed: true,
+  },
+})
+
+export const getAllUsers = () => prisma.user.findMany()
+
+export const findAvailableBooksByAuthor = (author: string) => prisma.book.findMany({
+  where: {
+    author,
+    isBorrowed: false,
+  },
+})
+
+export const findAvailableBooksByTitle = (title: string) => prisma.book.findMany({
+  where: {
+    title: {
+      contains: title,
     },
-  })
-}
+    isBorrowed: false,
+  },
+})
 
-export const findAvailableBooksByTitle = async (title: string) => {
-  return await prisma.book.findMany({
-    where: {
-      title: {
-        contains: title,
-      },
-      isBorrowed: false,
-    },
-  })
-}
-
-export const findAvailableBooksByISBN = async (ISBN: string) => {
-  return await prisma.book.findMany({
+export const findAvailableBooksByISBN = (ISBN: string) => prisma.book.findMany({
     where: {
       ISBN: ISBN,
       isBorrowed: false,
     },
   })
-}
 
 export const borrowBook = async (userId: number, bookId: number) => {
   // First, check if the book exists and is available

@@ -36,3 +36,5 @@ As a Library user
 
 TODO
 - Think about how to make user and books not access functions that they shouldn't access.
+
+- Improvements validation of data.
