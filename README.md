@@ -102,7 +102,6 @@ In other hand, three users are inserted by default.
 # Improvements
 1. Unit tests should be included. 
 Integrating Prisma with Jest's mocks, as detailed in [this](https://www.prisma.io/docs/guides/testing/unit-testing) guide, is straightforward.
-
 2. User input validation.
 3. Support uppercases in search mode.
 4. Allowing users to go back to the previous option.

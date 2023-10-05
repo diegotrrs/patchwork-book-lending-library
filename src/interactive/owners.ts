@@ -20,7 +20,11 @@ export const promptAction = async () => {
 
 export const displayBorrowedBooks = (books: Book[]) => {
   if (books.length > 0){
-    console.log(chalk.green(`Books borrowed:`))
+    if(books.length === 1){
+      console.log(chalk.green(`1 book borrowed:`))
+    } else {
+      console.log(chalk.green(`${books.length} books borrowed:`))
+    }
     books.forEach(book => {      
       console.log(chalk.yellow(`${ book.id}. ${ book.title } by ${ book.author }. Borrowed by user${book.userId}`))
     })
